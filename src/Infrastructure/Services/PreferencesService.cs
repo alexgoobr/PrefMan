@@ -93,7 +93,7 @@ namespace PrefMan.Infrastructure.Services
                 return ownPrefMatch.PreferenceValue;
             }
 
-            var managedPrefMatch = userPref.ManagingPreferences.FirstOrDefault(x => x.PreferenceId   == preferenceId);
+            var managedPrefMatch = userPref.ManagingPreferences.FirstOrDefault(x => x.PreferenceId == preferenceId);
             if (managedPrefMatch != null)
             {
                 return managedPrefMatch.PreferenceValue;

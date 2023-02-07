@@ -3,7 +3,6 @@ using Microsoft.IdentityModel.Tokens;
 using System;
 using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
-using System.Reflection.PortableExecutable;
 using System.Security.Claims;
 using System.Security.Cryptography;
 

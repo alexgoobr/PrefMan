@@ -1,8 +1,8 @@
 ﻿using Amazon.DynamoDBv2;
 using Amazon.DynamoDBv2.DataModel;
 using Amazon.DynamoDBv2.DocumentModel;
-using PrefMan.Core.Interfaces;
 using PrefMan.Core.Domain.Dynamo;
+using PrefMan.Core.Interfaces;
 
 namespace PrefMan.Infrastructure.Repository
 {

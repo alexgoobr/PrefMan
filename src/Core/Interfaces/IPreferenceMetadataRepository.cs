@@ -4,8 +4,8 @@ using System.Threading.Tasks;
 
 namespace PrefMan.Core.Interfaces
 {
-    public interface IPreferenceMetadataRepository 
-    { 
+    public interface IPreferenceMetadataRepository
+    {
         Task SavePreferenceMetadata(PreferenceMetadata pref);
 
         Task<PreferenceMetadata> GetPreferenceMetadata(string preferenceId);

@@ -66,7 +66,7 @@ namespace PrefMan.Core.Util
                 ManagingPreferences = managingPreferencesToReturn.ToList(),
             };
         }
-        
+
         public static EnrichedManagingPreference EnrichManagingPreference(ManagingPreference pref, IEnumerable<PreferenceMetadata> preferences)
         {
             var enriched = new EnrichedManagingPreference

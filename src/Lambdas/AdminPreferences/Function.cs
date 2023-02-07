@@ -3,12 +3,12 @@ using Amazon.Lambda.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using PrefMan.Core;
+using PrefMan.Core.Domain.Dynamo;
 using PrefMan.Core.Interfaces;
+using PrefMan.Core.Security;
 using PrefMan.Core.Util;
 using PrefMan.Infrastructure;
 using System.Net;
-using PrefMan.Core.Domain.Dynamo;
-using PrefMan.Core.Security;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
@@ -21,7 +21,7 @@ public class Function
     private APIGatewayProxyResponse _unauthorizedResponse = new APIGatewayProxyResponse
     {
         Body = "Unauthorized.",
-        StatusCode = (int) HttpStatusCode.Unauthorized,
+        StatusCode = (int)HttpStatusCode.Unauthorized,
     };
 
     public Function()
@@ -188,8 +188,9 @@ public class Function
         try
         {
             prefBody = JsonConvert.DeserializeObject<PreferenceMetadata>(apigProxyEvent.Body);
-        } 
-        catch (Exception ex) {
+        }
+        catch (Exception ex)
+        {
             return new APIGatewayProxyResponse
             {
                 Body = "Body malformed.",

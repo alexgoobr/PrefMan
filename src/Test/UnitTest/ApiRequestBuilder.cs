@@ -1,5 +1,5 @@
-﻿using System.Text.Json;
-using Amazon.Lambda.APIGatewayEvents;
+﻿using Amazon.Lambda.APIGatewayEvents;
+using System.Text.Json;
 
 namespace PrefMan.Test.UnitTest;
 

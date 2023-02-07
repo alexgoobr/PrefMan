@@ -1,17 +1,6 @@
-﻿using Amazon.Auth.AccessControlPolicy;
-using Amazon.Lambda.TestUtilities;
-using Moq;
-using PrefMan.Core.Domain;
+﻿using PrefMan.Core.Domain;
 using PrefMan.Core.Domain.Dynamo;
-using PrefMan.Core.Interfaces;
 using PrefMan.Core.Util;
-using PrefMan.Infrastructure.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PrefMan.Test.UnitTest
 {

@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Serilog;
-using Serilog.Formatting.Compact;
 namespace PrefMan.Infrastructure;
 
 public static class Startup
@@ -24,7 +22,7 @@ public static class Startup
     private static ServiceProvider InitializeServiceProvider()
     {
         var services = new ServiceCollection();
-        
+
         /*
         var logger = new LoggerConfiguration()
             .WriteTo.Console(new RenderedCompactJsonFormatter())

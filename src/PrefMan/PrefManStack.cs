@@ -1,7 +1,6 @@
 using Amazon.CDK;
 using Amazon.CDK.AWS.APIGateway;
 using Amazon.CDK.AWS.DynamoDB;
-using Amazon.CDK.AWS.Events.Targets;
 using Amazon.CDK.AWS.IAM;
 using Amazon.CDK.AWS.Lambda;
 using Constructs;
@@ -14,7 +13,7 @@ namespace PrefMan.CDK
         internal PrefManStack(Construct scope, string id, IStackProps props = null) : base(scope, id, props)
         {
             #region iamroles
-            
+
             var iamLambdaRole = new Role(this, "LambdaExecutionRole", new RoleProps
             {
                 RoleName = "LambdaExecutionRole",
@@ -31,7 +30,7 @@ namespace PrefMan.CDK
                 Actions = new[] { "cloudwatch:PutMetricData" },
                 Resources = new[] { "*" }
             }));
-            
+
             #endregion iamroles
 
             #region DynamoDB tables
@@ -62,7 +61,7 @@ namespace PrefMan.CDK
 
             #endregion
 
-            #region Lambda 
+            #region Lambdas 
 
             var getUserPreferencesLambda = new Function(this, "getUserPreferencesFunction", new FunctionProps
             {
@@ -151,7 +150,6 @@ namespace PrefMan.CDK
                 PassthroughBehavior = PassthroughBehavior.WHEN_NO_TEMPLATES,
             });
 
-
             var userPreferencesResource = api.Root.AddResource("UserPreferences");
 
             var userPreferencesResourceWithUserId = userPreferencesResource.AddResource("{userId}");
@@ -172,46 +170,13 @@ namespace PrefMan.CDK
             adminPreferencesResourceWithId.AddMethod("PUT", adminPreferencesIntegration); //PUT /AdminPreferences/{id} (Update single preference)
             adminPreferencesResourceWithId.AddMethod("DELETE", adminPreferencesIntegration);  //DELTE /AdminPreferences/{id} (Delete single preference)
 
+            #endregion
+
+            #region Outputs
+
             new CfnOutput(this, "UserPreferencesTableName", new CfnOutputProps() { Value = userPreferencesTable.TableName });
             new CfnOutput(this, "PreferenceMetadataTableName", new CfnOutputProps() { Value = preferencesMetadataTable.TableName });
             new CfnOutput(this, "ApiUrl", new CfnOutputProps() { Value = api.Url });
-
-            /*
-            var mockIntegration = new MockIntegration(new IntegrationOptions
-            {
-                //Integration request
-                RequestTemplates = new Dictionary<string, string>
-                {
-                    ["application/json"] = "{ \"statusCode\": \"200\" }"
-                },
-                //Integration response
-                IntegrationResponses = new IIntegrationResponse[]
-                {
-                    new IntegrationResponse
-                    {
-                        StatusCode = "200",
-                        ResponseTemplates = new Dictionary<string, string>
-                        {
-                            { "application/json", "" }
-                        }
-                    }
-                }
-            });
-            var mockMethod = deptResource.AddMethod("OPTIONS", mockIntegration, new MethodOptions
-            {
-                //Method response
-                MethodResponses = new[]
-                {
-                    new MethodResponse
-                    {
-                        StatusCode = "200", ResponseModels = new Dictionary<string, IModel>()
-                        {
-                            ["application/json"] = Model.EMPTY_MODEL
-                        }
-                    }
-                }
-            });
-            */
 
             #endregion
         }

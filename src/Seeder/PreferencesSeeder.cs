@@ -1,7 +1,7 @@
-﻿using PrefMan.Core.Interfaces;
-using PrefMan.Core.Util;
-using PrefMan.Core.Domain;
+﻿using PrefMan.Core.Domain;
 using PrefMan.Core.Domain.Dynamo;
+using PrefMan.Core.Interfaces;
+using PrefMan.Core.Util;
 
 namespace PrefMan.Seeder
 {
